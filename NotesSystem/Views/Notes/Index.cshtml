@@ -1,0 +1,77 @@
+﻿@model NotesSystem.Models.ViewModel
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Note list for : @Model.student.name</h1>
+<hr />
+<p>
+    <a class="btn btn-danger" asp-action="View" asp-route-id="@Model.student.idStudent">Add a note</a>
+</p>
+<hr />
+<table class=" table text-center">
+    <thead>
+        <tr>
+            <th>
+             Note Description
+            </th>
+            <th>
+               Note
+            </th>
+           
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.notes) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.note)
+            </td>
+            <td>
+                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.idNote">Edit</a> |
+                <a class="btn btn-info" asp-action="Delete" asp-route-id="@item.idNote">Delete</a>
+            </td>
+        </tr>
+}
+        <tr>
+            <td>
+               average score for exams :
+            </td>
+            <td>
+                @Model.totalExams
+            </td>
+            <td>
+                average score for homeWork :
+            </td>
+            <td>
+                @Model.totalhomeWork
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Final score (exams=0.30, homework=0.70):
+            </td>
+            <td>
+                @Model.finalScore
+            </td>
+            <td>
+                @if ( @Model.finalScore<6){
+                <a style="color:red">      Failed, your score is not enough. </a>
+
+                }else{
+                <a style="color: green">      Approved, you passed!! </a>
+
+                }
+
+            </td>
+        </tr>
+    </tbody>
+</table>

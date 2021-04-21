@@ -1,0 +1,39 @@
+﻿@model NotesSystem.Models.ViewModel
+
+<h4>Add a note </h4>
+<hr />
+
+    <label class="control-label"> Student : @Model.student.name</label>
+ 
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateNew">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="note.Description" class="control-label"></label>
+                <select asp-for="note.Description" class="form-control">
+                    <option>Select...</option>
+                    <option>HomeWork</option>
+                    <option>Exam</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="note.note" class="control-label"></label>
+                <input asp-for="note.note" class="form-control" />
+                <span asp-validation-for="note.note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="note.idStudent" class="form-control" value="@Model.student.idStudent" />
+                <input type="hidden" asp-for="note.student" class="form-control" value="@Model.student" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-info"  asp-action="Index" asp-controller="Students">Back to student List</a>
+</div>
+

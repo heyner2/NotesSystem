@@ -1,0 +1,89 @@
+﻿
+
+@{
+    ViewData["Title"] = "Search page";
+}
+
+<h1>Search or select a student to add notes</h1>
+<hr />
+<br />
+<h4>Search</h4>
+<hr />
+<br />
+<div class="row text-center">
+    <div class="col-md-12">
+        <form asp-controller="Notes" asp-action="Create">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="name" class="control-label font-weight-bold font-italic" >Enter a name or a key word to look up</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input name="name" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+            <br />
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="submit" value="Search" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<br />
+<br />
+
+@model IEnumerable<NotesSystem.Models.Student>
+<hr />
+@if (Model.Count() > 0)
+{
+<div class="row">
+    <div class="col-md-12">
+        <table border="1" class="text-center">
+            <thead>
+                <tr>
+                    <th style="min-width:200px">
+                        @Html.DisplayNameFor(model => model.name)
+                    </th>
+                    <th style="min-width:200px">
+                        @Html.DisplayNameFor(model => model.age)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                <tr>
+                    <td style="min-width:200px">
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td style="min-width:200px">
+                        @Html.DisplayFor(modelItem => item.age)
+                    </td>
+                    <td>
+                        <a class="btn btn-info" asp-controller="Notes" asp-action="View" asp-route-id="@item.idStudent">Add a Note</a> |
+                        <a class="btn btn-info" asp-controller="Notes" asp-action="getNotes" asp-route-id="@item.idStudent">view Notes</a>
+                    </td>
+                </tr>
+}
+            </tbody>
+        </table>
+    </div>
+</div>
+}
+else{
+<div>
+    <h1>No student was found </h1>
+</div>
+}
