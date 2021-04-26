@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Search page";
+
+    
 }
 
 <h1>Search or select a student to add notes</h1>
@@ -12,14 +14,14 @@
 <br />
 <div class="row text-center">
     <div class="col-md-12">
-        <form asp-controller="Notes" asp-action="Create">
+        <form>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
                         <label for="name" class="control-label font-weight-bold font-italic" >Enter a name or a key word to look up</label>
                     </div>
                     <div class="col-md-6">
-                        <input name="name" class="form-control" />
+                        <input id="student" name="name" class="form-control" />
                     </div>
                 </div>
 
@@ -28,7 +30,8 @@
             <div class="row text-center">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <input type="submit" value="Search" class="btn btn-primary" />
+                        <input type="button" id="getStudent" value="Search" class="btn btn-primary" />
+                        <h2 style="color:red">  @ViewBag.errorMessage</h2>
                     </div>
                 </div>
             </div>
@@ -62,22 +65,12 @@
 
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var item in Model) {
-                <tr>
-                    <td style="min-width:200px">
-                        @Html.DisplayFor(modelItem => item.name)
-                    </td>
-                    <td style="min-width:200px">
-                        @Html.DisplayFor(modelItem => item.age)
-                    </td>
-                    <td>
-                        <a class="btn btn-info" asp-controller="Notes" asp-action="View" asp-route-id="@item.idStudent">Add a Note</a> |
-                        <a class="btn btn-info" asp-controller="Notes" asp-action="getNotes" asp-route-id="@item.idStudent">view Notes</a>
-                    </td>
-                </tr>
-}
-            </tbody>
+            <div id="toUpdate">
+                <tbody>
+                    @Html.Partial("~/Views/Shared/_StudentTable.cshtml")
+
+                </tbody>
+            </div>
         </table>
     </div>
 </div>
@@ -86,4 +79,22 @@ else{
 <div>
     <h1>No student was found </h1>
 </div>
+}
+
+@section scripts{ 
+    <script>
+
+    $(function () {
+        $("#getStudent").click(function () {
+            var student = $("#student").val();
+            var url = "@Url.Action("Create","Notes"  )" + "?name=" + student;
+            var name = student;
+            console.log("i was executed the url is " + url);
+            $.post(url).done(function () {
+                $("#toUpdate").load("/Notes/CreateTable?name=" + student);
+                console.log("i got this far");
+            });
+        });
+    });
+    </script>
 }

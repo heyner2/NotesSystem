@@ -137,8 +137,8 @@ namespace NotesSystem.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(string name)
+
+        public async Task<PartialViewResult> Create(string name)
         {
             List<Student> student = await _context.Student.Where(s => s.name.Contains(name)).ToListAsync();
             if (student.Count == 0)
@@ -146,15 +146,39 @@ namespace NotesSystem.Controllers
                 student = await _context.Student.Where(s => s.name.Equals(name)).ToListAsync();
                 
             }
-            return View(student);
+
+            if (student.Count == 0)
+            {
+                ViewBag.errorMessage = "Student not found";
+            }
+           
+            return PartialView("_StudentTable", student);
+        }
+
+
+        public  ActionResult CreateTable(string name)
+        {
+            List<Student> student =  _context.Student.Where(s => s.name.Contains(name)).ToList();
+            if (student.Count == 0)
+            {
+                student = _context.Student.Where(s => s.name.Equals(name)).ToList();
+
+            }
+
+            if (student.Count == 0)
+            {
+                ViewBag.errorMessage = "Student not found";
+            }
+
+            return PartialView("_StudentTable", student);
         }
 
         // POST: Notes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
-        
-             public async Task<IActionResult> CreateSearch()
+
+        public async Task<IActionResult> CreateSearch()
         {
 
             List<Student> student = await _context.Student.ToListAsync();
