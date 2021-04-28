@@ -2,8 +2,6 @@
 
 @{
     ViewData["Title"] = "Search page";
-
-    
 }
 
 <h1>Search or select a student to add notes</h1>
@@ -31,6 +29,8 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <input type="button" id="getStudent" value="Search" class="btn btn-primary" />
+                      &nbsp;  <input type="button" id="printStudent" value="Search" class="btn btn-primary" />
+                        
                         <h2 style="color:red">  @ViewBag.errorMessage</h2>
                     </div>
                 </div>
@@ -84,9 +84,10 @@ else{
 @section scripts{ 
     <script>
 
-    $(function () {
-        $("#getStudent").click(function () {
+        $(function () {
             var student = $("#student").val();
+        $("#getStudent").click(function () {
+           
             var url = "@Url.Action("Create","Notes"  )" + "?name=" + student;
             var name = student;
             console.log("i was executed the url is " + url);
@@ -95,6 +96,9 @@ else{
                 console.log("i got this far");
             });
         });
+
+
+         
     });
     </script>
 }

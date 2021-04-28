@@ -6,11 +6,12 @@
     <title>@ViewData["Title"] - School Notes System</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 </head>
 <body style="background-color: gainsboro">
     <header>
-        <nav  class=" text-right navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class=" text-right navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="font-family: Cambria; font-weight: bold; padding-right: 400px; position: relative; float: left">School notes system </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -20,13 +21,13 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a  style="font-family: Cambria; font-weight: bold;" class=" mr-2 btn btn-danger nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">Add Student</a>
+                            <a style="font-family: Cambria; font-weight: bold;" class=" mr-2 btn btn-danger nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">Add Student</a>
                         </li>
                         <li class="nav-item">
-                            <a style="font-family: Cambria; font-weight: bold;"  class="mr-2 btn btn-danger nav-link text-dark" asp-area="" asp-controller="Professors" asp-action="Index">Add professor</a>
+                            <a style="font-family: Cambria; font-weight: bold;" class="mr-2 btn btn-danger nav-link text-dark" asp-area="" asp-controller="Professors" asp-action="Index">Add professor</a>
                         </li>
                         <li class="nav-item">
-                            <a style="font-family: Cambria; font-weight: bold;"  class="mr-2 xbtn btn-danger nav-link text-dark" asp-area="" asp-controller="Notes" asp-action="CreateSearch">Add A note(Exam/Homework)</a>
+                            <a style="font-family: Cambria; font-weight: bold;" class="mr-2 xbtn btn-danger nav-link text-dark" asp-area="" asp-controller="Notes" asp-action="CreateSearch">Add A note(Exam/Homework)</a>
                         </li>
                     </ul>
                 </div>
@@ -47,6 +48,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
