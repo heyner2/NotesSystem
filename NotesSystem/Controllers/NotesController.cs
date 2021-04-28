@@ -229,7 +229,7 @@ namespace NotesSystem.Controllers
             /* we create a query which will hold just the query to avoid pulling all date before pagination and search
             for optimization porpouses it faster to get just 10 item than 100000 then we equal to the model view
             to get only the values we want to pass to the view not all of the values from object we could also do 
-            orderby sortColumn+""+sortColumnDir to sort but it was done later by linq.dinamyc.core to validate it has an order with if */
+            orderby sortColumn+""+sortColumnDir to sort but it was done later by linq.dinamyc.core it can also be linq.dinamyc to validate it has an order with if */
             IQueryable<ViewModelStudent> query = (from a in _context.Student where a.name.Contains(searchValue) select new ViewModelStudent{ 
             name=a.name,
             age=a.age
