@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} <h4>File system</h4>
+  <br />
+  <br />
+<form asp-action="UploadFiles" asp-controller="Files" enctype="multipart/form-data" method="post">
+    <h4>Update your files</h4>
+    <br />
+    <input type="file" multiple name="files" />
+    <button type="submit">Submit</button>
+</form>
+
+<form asp-action="UploadFile" asp-controller="Files" enctype="multipart/form-data" method="post">
+    <h4>Update your file</h4>
+    <br />
+    <input type="file"  name="file" />
+    <button type="submit">Submit</button>
+</form>
+<br />
+<form asp-action="FileInModel" asp-controller="Files" enctype="multipart/form-data" method="post" >
+    <h4>Update your file in model</h4>
+    <br />
+    <input type="text" name="file.name" />
+    <input type="file" name="file.file" /><br />
+    <button type="submit">Submit</button>
+</form>
