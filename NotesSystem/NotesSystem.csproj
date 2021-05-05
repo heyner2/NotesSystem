@@ -19,11 +19,26 @@
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="3.2.12" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="MimeMapping" Version="1.0.1.37" />
+    <PackageReference Include="MimeTypeMapOfficial" Version="1.0.15" />
+    <PackageReference Include="MimeTypes" Version="2.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.9" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Files\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Files\cayo.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Files\DOCENTE_CURSO-NIU_MAYO_2021.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

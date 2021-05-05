@@ -1,4 +1,6 @@
-﻿@*
+﻿@model List<string>
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -26,4 +28,23 @@
     <input type="text" name="file.name" />
     <input type="file" name="file.file" /><br />
     <button type="submit">Submit</button>
+    <label>@ViewBag.Message</label>
 </form>
+
+<br />
+<br />
+<h2>Document List</h2>
+
+<table>
+    <tr>
+        <td>File Name</td>
+        <td>Link</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ToString()</td>
+            <td><a href="@Url.Action("Download", "Files",new {fileName= @item.ToString()})">Download</a></td>
+        </tr>
+    }
+</table>
